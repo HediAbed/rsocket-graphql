@@ -1,0 +1,7 @@
+server:
+  port: 8020
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true

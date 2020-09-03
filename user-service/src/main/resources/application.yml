@@ -1,0 +1,10 @@
+server:
+  port: 8085
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  rsocket:
+    server:
+      port: 7000
+      transport: tcp
