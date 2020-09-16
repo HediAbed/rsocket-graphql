@@ -34,7 +34,7 @@ public class GraphQLController {
 
         //Schema generated from query classes
         GraphQLSchema schema = new GraphQLSchemaGenerator()
-                .withBasePackages("com.league.of.legends.lol")
+                .withBasePackages("com.demo.rsocket.bff.service")
                 .withOperationsFromSingletons(userService)
                 .generate();
         graphQL = GraphQL.newGraphQL(schema).build();

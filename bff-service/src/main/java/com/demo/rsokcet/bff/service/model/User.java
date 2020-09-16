@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 public class User {
-    private Long id;
+    private long id;
 
     private String  firstName;
 

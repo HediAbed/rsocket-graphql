@@ -1,8 +1,8 @@
 package com.demo.rsokcet.user.service.controller;
 
 import com.demo.rsokcet.user.service.model.User;
+import com.demo.rsokcet.user.service.model.dto.CreateUser;
 import com.demo.rsokcet.user.service.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -15,37 +15,29 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final ObjectMapper objectMapper;
 
-    @MessageMapping("users/findAll")
+    @MessageMapping("users/find/all")
     public Flux<User> all() {
         return userService.findAll();
     }
 
-    @MessageMapping("users/findById/{id}")
+    @MessageMapping("users/find/{id}")
     public Mono<User> get(@DestinationVariable("id") long id) {
         return userService.findOne(id);
     }
 
-    @MessageMapping("users/save")
-    public Mono<User> create(@Payload User user) {
-        return userService.save(user);
+    @MessageMapping("users/create")
+    public Mono<User> create(@Payload CreateUser user) {
+        return userService.create(user);
     }
 
-    @MessageMapping("users/update/{id}")
-    public Mono<User> update(@DestinationVariable("id") long id, @Payload User user) {
-        return userService.findOne(id)
-                .map(u -> {
-                    u.setFirstName(user.getFirstName());
-                    u.setLastName(user.getFirstName());
-                    u.setJob(user.getJob());
-                    u.setMobile(user.getMobile());
-                    return u;
-                })
-                .flatMap(userService::save);
+    @MessageMapping("users/update")
+    public Mono<User> update(@Payload User user) {
+        return userService.update(user);
     }
-    @MessageMapping("users/deleteById/{id}")
+
+    @MessageMapping("users/delete/{id}")
     public void delete(@DestinationVariable("id") long id) {
-         userService.delete(id);
+        userService.delete(id);
     }
 }
