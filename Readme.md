@@ -66,7 +66,7 @@ When the command runs, you will see some debug information in the terminal windo
 The RSocket **rsc** client sends a request to the **RSocketController** using the RSocket messaging protocol. The request is sent over TCP to the address **tcp://localhost:7000** where the server is waiting. A message routing instruction is sent in the first message frame. This routing instruction is set using the **--route** option of the CLI client and is set to **users/find/all** . Spring uses this routing information to select the correct **@MessageMapping** endpoint to call. The method then responds with a message of its own. The CLI client prints the whole interaction in the terminal window as a series of message frames. 
 
 #### 2) bff-service
-We need to create a configuration class for configurin **RSocketRequester** Bean and set **Jackson** Encoder and Decoder strategies.
+We need to create a configuration class for configuring **RSocketRequester** Bean and set **Jackson** Encoder and Decoder strategies.
 ***Jackson:**  will help us to **map json to object** in our case "User.class"*
 ```java
 @Configuration
@@ -192,6 +192,7 @@ public class GraphQLController {
 $ ./mvnw clean package spring-boot:run -DskipTests=true
 ```
 ( the server will be started on http://localhost:8020)
+![rsc](./img/get.png)
 ##### Queries examples:
 you can use the queries and mutations examples to query and change the data.
  - Get All Users
