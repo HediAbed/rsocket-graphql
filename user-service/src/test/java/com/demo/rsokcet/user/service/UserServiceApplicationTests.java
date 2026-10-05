@@ -1,4 +1,4 @@
-package com.hediabed.demo.rsokcet.user.service;
+package com.demo.rsokcet.user.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

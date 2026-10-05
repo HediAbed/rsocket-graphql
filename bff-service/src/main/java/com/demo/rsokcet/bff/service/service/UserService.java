@@ -42,6 +42,6 @@ public class UserService {
 
     @GraphQLMutation(name = "deleteUser")
     public void delete(@GraphQLArgument(name = "id") long id){
-        rSocketRequester.route("users/deleteById."+ id).send();
+        rSocketRequester.route("users/delete/"+ id).send().block();
     }
 }
